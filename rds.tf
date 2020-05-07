@@ -1,7 +1,7 @@
 resource "aws_db_instance" "postgres_database" {
-  identifier           = "db-instance-${var.component}-${var.deployment_identifier}"
+  identifier           = coalesce(var.database_instance_id, "db-instance-${var.component}-${var.deployment_identifier}")
   allocated_storage    = var.allocated_storage
-  storage_type         = "standard"
+  storage_type         = var.storage_type
   engine               = "postgres"
   engine_version       = var.database_version
   instance_class       = var.database_instance_class
